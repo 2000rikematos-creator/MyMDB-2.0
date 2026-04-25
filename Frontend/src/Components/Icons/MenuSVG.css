@@ -1,0 +1,28 @@
+
+.menu-icon{
+    position: relative;
+    stroke-width: 3px;
+    stroke: var(--imdb-yellow);
+    height: 60%;
+    margin-right: 5vw;
+    width: auto;
+}
+
+
+
+
+@media(hover:hover){
+    .menu-icon:hover{
+    cursor: pointer;
+    scale: 1.1;
+
+}
+}
+
+@media(max-width:785px) and (hover:none){
+    .menu-icon:active{
+        scale:1.1;
+        transition: transform 0.1s;
+    }
+}
+

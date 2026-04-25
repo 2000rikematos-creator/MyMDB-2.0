@@ -1,0 +1,21 @@
+.movie-search-list{
+    padding-top: 0;
+    position: absolute;
+    padding-left: 0px;
+    max-height: 80vh;
+    height: auto;
+    align-items: start;    
+    overflow:scroll;
+    overflow-x: hidden;
+    
+    z-index: 1;
+    background-color:var(--imdb-dark-gray-transparent);
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+

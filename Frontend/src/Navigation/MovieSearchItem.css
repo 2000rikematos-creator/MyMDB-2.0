@@ -1,0 +1,22 @@
+
+.movie-result-item:hover{
+    cursor: pointer;
+}
+
+.movie-result-item{
+display: flex;
+flex-direction: row;
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+.mini-poster{
+    margin-right: 10px;
+    height: 100px;
+    width:auto
+}
+
+.search-results-movie-title{
+    color:var(--text-color);
+    font-size:small;
+}

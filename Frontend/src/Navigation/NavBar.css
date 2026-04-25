@@ -1,0 +1,42 @@
+nav{
+    position:fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background-color: var(--imdb-dark-gray);
+    height: 80px;
+    width: 100vw;
+}
+
+.button{
+    background-color:  transparent;/* Amarelo IMDb */
+    color: var(--imdb-yellow);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: large;
+    border: none;
+    padding: 10px;
+    font-weight: 100;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+
+}
+
+@media(hover:hover){
+   .button:hover{
+    background-color: var(--imdb-yellow);
+    color: black; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+} 
+}
+
+
+
+@media (max-width:785) {
+    
+}

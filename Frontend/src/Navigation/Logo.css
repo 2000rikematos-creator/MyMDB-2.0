@@ -1,0 +1,34 @@
+.logo-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    margin-left: 5vw;
+}
+
+.logo-image{
+    position: relative;
+    justify-self: center;
+    height: auto;
+    width: 100px;
+    border-radius: 5px;
+}
+
+@media(hover:hover){
+ .logo-image:hover{
+    cursor: pointer;
+    scale:1.1;
+}   
+}
+
+
+@media(max-width:785px) and (hover:none){
+    .logo-container{
+        width:20%;
+    }
+    .logo-image:active{
+        scale: 1.1;
+        
+    }
+}
+

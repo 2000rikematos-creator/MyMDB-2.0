@@ -1,0 +1,19 @@
+.side-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100vh;
+  background: #1a1a1a;
+  z-index: 100;
+  
+  /* Estado Inicial: Escondido 100% para a esquerda */
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out; /* ease-out para parar suavemente */
+}
+
+/* Quando o SideDrawer tem a classe 'open' */
+.side-drawer.open {
+  transform: translateX(0);
+}
+

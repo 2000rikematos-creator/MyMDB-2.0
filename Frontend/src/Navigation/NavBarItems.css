@@ -1,0 +1,17 @@
+.nav-bar-items{ 
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    gap:20px;
+    right:5%;
+}
+
+
+@media(max-width:785px){
+    .nav-bar-items{
+        display: flex;
+        gap: 20px;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+}

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+html, body, #root {
+    --imdb-font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  --imdb-yellow: #f5c518;
+  --imdb-black: #000000;
+  --imdb-dark-gray: #121212;
+  --imdb-dark-gray-transparent:#12121280; 
+  --text-color: #ffffff;
+  --padding-standard: 20px;
+}
+
+body {
+    font-family: var(--imdb-font);
+    margin-top: 0px;
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    background-color:var(--imdb-black);
+    font-family: sans-serif;
+}

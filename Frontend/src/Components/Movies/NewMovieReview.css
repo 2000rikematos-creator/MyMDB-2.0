@@ -1,0 +1,136 @@
+.movie-meta{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.movie-review-container {
+  position: relative;
+  top:20vh;
+  display: grid;
+  grid-template-columns: auto 600px;
+  grid-template-rows: auto auto;
+  align-items: start; /* <--- Isso garante que o texto alinhe pelo topo do poster */
+}
+
+.movie-details{
+  margin: 0;
+  color: var(--text-color);
+  position: relative;
+  top: 0;
+    display: grid;
+    
+    grid-template-columns: auto;
+    grid-template-rows: auto  auto;
+}
+
+.poster-img{
+    width: auto;
+    height: 60%;
+    max-height: 400px;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.movie-review-form{
+    background-color: rgb(0, 0, 0);
+}
+
+.stars {
+  position: relative;
+  bottom: 20px;
+  display: flex;
+  flex-direction: row-reverse; /* Inverte a ordem visualmente */
+  justify-content: flex-end;
+}
+
+.stars input {
+  display: none; /* Esconde os radio buttons */
+}
+
+.stars label {
+  font-size: 30px;
+  color: #ccc; /* Cor da estrela vazia */
+  cursor: pointer;
+  transition: color 0.5s;
+}
+
+@media(hover:hover){
+  .stars label:hover,
+.stars label:hover ~ label,
+.stars input:checked ~ label {
+  color: var(--imdb-yellow); /* Cor da estrela preenchida */
+}
+
+/* Efeito de brilho ao passar o rato */
+.stars label:hover {
+  transform: scale(1.5);
+}
+}
+
+/* Quando passas o rato ou clicas, a estrela e as anteriores ficam douradas */
+
+
+.review-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50vh;
+  gap:20px;
+
+}
+
+.review-input-textbox {
+  background-color: var(--imdb-dark-gray);
+  color: white;
+  width: 100%;
+  resize: none;
+}
+
+.submit-review-button{
+   width: 200px;
+     background-color:  var(--imdb-yellow);/* Amarelo IMDb */
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+@media(max-width:785px) and (hover:none){
+.movie-review-container {
+    position: relative;
+    top:15vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.movie-details{
+  width: 80vw;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.stars label:active,
+.stars label:active ~ label,
+.stars input:checked ~ label {
+  color: var(--imdb-yellow); /* Cor da estrela preenchida */
+}
+
+/* Efeito de brilho ao passar o rato */
+.stars label:active {
+  transform: scale(1.5);
+}
+
+
+}

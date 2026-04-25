@@ -1,0 +1,56 @@
+.signup-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap:50px;
+    align-items: center;
+    gap: 10px;
+    height: 50vh;
+    width: 40vw;
+    margin:30px;
+}
+
+.form-inputs{
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+}
+
+.signup-button-container{
+    display: flex;
+    gap:40px;
+}
+
+.cancel-signup-button{
+    background-color: transparent;
+    border: solid 2px var(--imdb-yellow);
+    color: var(--imdb-yellow)
+}
+@media(hover:hover){
+    .cancel-signup-button:hover{
+    color: var(--imdb-black);
+}
+}
+
+
+.email-input, .password-input, .username-input {
+
+    height: 30px;
+    width: 200px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+@media(max-width:785) and (hover:none){
+    .signup-form{
+        width:50%;
+    }
+
+    .button:active{
+        scale:1.1;
+    }
+    .cancel-signup-button:active{
+    color: var(--imdb-black);
+}
+
+}

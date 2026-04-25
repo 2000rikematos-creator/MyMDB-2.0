@@ -1,0 +1,21 @@
+.button-container{
+    display: flex;
+    gap:30px;
+    justify-content: center;
+}
+
+.cancel-delete-button{
+    background-color: transparent;
+    border: solid 2px var(--imdb-yellow);
+    color: var(--imdb-yellow);
+}
+.cancel-delete-button:hover{
+    background-color: transparent;
+    border: solid 2px var(--imdb-yellow);
+    color: var(--imdb-yellow);
+}
+
+
+.button:hover{
+    scale:1.1;
+}

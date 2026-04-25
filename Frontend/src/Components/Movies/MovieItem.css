@@ -1,0 +1,126 @@
+.movie-item-button-container{
+background-color: rgba(0, 0, 0, 0.7);
+position: absolute;
+top: 0px;
+left: 0px;
+height: 100%;
+width: 100%;
+z-index: 1;
+display: flex;
+justify-content: space-around;
+flex-direction: column;
+align-items: center;
+background-size: cover;
+background-position: center;
+overflow: hidden;
+border-radius: 5px;
+}
+
+.delete-button, .edit-button{
+    width: 100px;
+     background-color:  var(--imdb-yellow);/* Amarelo IMDb */
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.poster{
+    position: relative;
+    height:300px;
+    width: 200px;
+    anchor-name: --movie-list-anchor;
+}
+
+.poster:hover .movie-item-button-container:hover{
+    cursor: pointer;
+}
+
+.poster-image{
+    height: auto;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+@media(hover:hover){
+  .poster:hover{
+    scale: 1.2;
+    transition: transform 0.1s;
+}  
+}
+
+
+li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+.movie-title{
+    margin-top: 20px;
+    -webkit-text-stroke: 0.2px black;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);.
+}
+
+.movie-list-star-rating{
+    padding-left: 0px;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    justify-content: space-evenly;
+}
+
+.movie-list-star-rating-item{
+    margin: 5px;
+    color: var(--imdb-yellow);
+    -webkit-text-stroke: 0.1px black;
+    font-size: 1.5em;
+}
+.movie-list-empty-star-rating-item{
+    margin: 5px;
+    color: transparent;
+    -webkit-text-stroke: 0.1px var(black);
+    font-size: 1.5em;
+}
+
+.movie-list-review{
+    margin-top: 0 ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center ;
+    -webkit-text-stroke: 0.2px black;
+}
+
+.movie-item{
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    top: 15vh;
+    
+    color: var(--text-color);
+    padding:0;
+    width: 60vw;
+    
+}
+
+
+@media(max-width:785px) and (hover:none){
+    .movie-item{
+        max-width: 60%;
+    }
+    .poster:active{
+        scale: 1.2;
+        transition: transform 0.1s;
+    }
+
+}
