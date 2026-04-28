@@ -20,7 +20,7 @@ const LoginModal = (props) => {
   event.preventDefault();
   setLoadingState(true)
   try{
-    const response = await sendRequest("http://localhost:5000/api/users/login","POST", formData)
+    const response = await sendRequest(`${process.env.VITE_SERVER_URL}/api/users/login`,"POST", formData)
     setLoadingState(false)
     setFormData({email:"", password:""})
     props.onSuccess("login",response.user)
