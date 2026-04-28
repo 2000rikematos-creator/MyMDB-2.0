@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import MovieSearchResults from "./MovieSearchResults";
-import Modal from "../Modals/modal";
+import Modal from "../Modals/Modal";
 import NavBarItem from "./NavBarItem";
 import "./SearchMovies.css"
 

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 
 import MovieList from "../Components/Movies/MovieList"
 import PageLayout from "../Components/Shared/PageLayout"
-import Modal from "../Modals/modal"
+import Modal from "../Modals/Modal"
 
 
 

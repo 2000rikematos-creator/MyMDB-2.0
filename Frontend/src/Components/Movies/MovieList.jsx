@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import MovieItem from "./MovieItem"
 import "./MovieList.css"
 import PageLayout from "../Shared/PageLayout"
-import Modal from "../../Modals/modal"
+import Modal from "../../Modals/Modal"
 
 function MovieList(props) {
 
