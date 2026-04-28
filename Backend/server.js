@@ -10,6 +10,7 @@ import HttpError from "./utils/errorHelper.js"
 const port = process.env.PORT
 
 const app = express()
+app.set('trust proxy', 1);
 
 const corsOptions = {
   origin: process.env.FRONTEND_URL, 
@@ -23,9 +24,9 @@ app.use(session({
     saveUninitialized: false,    
     rolling: true,              
     cookie: {
-        secure: false,          
+        secure: true,          
         httpOnly: true,
-        sameSite: 'lax',        
+        sameSite: 'none',        
         maxAge: 1000 * 60 * 60 * 24 
     }
 }));
