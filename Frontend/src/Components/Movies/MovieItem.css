@@ -64,7 +64,7 @@ li{
 .movie-title{
     margin-top: 20px;
     -webkit-text-stroke: 0.2px black;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);.
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
 .movie-list-star-rating{
@@ -84,7 +84,7 @@ li{
 .movie-list-empty-star-rating-item{
     margin: 5px;
     color: transparent;
-    -webkit-text-stroke: 0.1px var(black);
+    -webkit-text-stroke: 0.1px black;
     font-size: 1.5em;
 }
 
