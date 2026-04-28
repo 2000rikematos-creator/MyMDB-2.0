@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import NewMovieReview from "../Components/Movies/NewMovieReview";
-import Modal from "../Modals/modal";
+import Modal from "../Modals/Modal";
 import { useAuth } from "../authentication/authContext";
 import PageLayout from "../Components/Shared/PageLayout";
 import SuccessModal from "../Modals/SuccessModal";
