@@ -10,7 +10,7 @@ const [isLoading, setIsLoading] = useState(true)
 useEffect(() => {
     async function checkSession() {
         try{
-            const response = await fetch("http://localhost:5000/api/users/me",{credentials:"include"})
+            const response = await fetch(`${process.env.VITE_SERVER_URL}/api/users/me`,{credentials:"include"})
         const responseData = await response.json();
         
         if(!response.ok) {return setUser(null) }
@@ -34,7 +34,7 @@ function login(userData){
 
 async function logout(){
     try{
-    const response = await fetch("http://localhost:5000/api/users/logout", {method:"POST", credentials:"include"})
+    const response = await fetch(`${process.env.VITE_SERVER_URL}/api/users/logout`, {method:"POST", credentials:"include"})
     const responseData = await response.json()
     console.log(responseData)
     setUser(null)
