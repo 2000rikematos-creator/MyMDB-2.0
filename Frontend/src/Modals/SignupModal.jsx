@@ -24,7 +24,7 @@ function SignupModal(props){
     event.preventDefault();
     setloadingState(true)
     try{
-    const response = await sendRequest("http://localhost:5000/api/users/signup", "POST", formData)
+    const response = await sendRequest(`${process.env.VITE_SERVER_URL}/api/users/signup`, "POST", formData)
     setloadingState(false)
     setFormData({email:"", username:"", password:""})
     props.onSuccess("signup", response)
