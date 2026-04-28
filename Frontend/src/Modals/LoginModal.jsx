@@ -49,7 +49,7 @@ const LoginModal = (props) => {
       
       
      <div className='signup-button-container'> 
-      <FormInput className="button signup-button" disabled={loadingState} onChange={handleChange} type="submit" value="Signup"/>
+      <FormInput className="button signup-button" disabled={loadingState} onChange={handleChange} type="submit" value="login"/>
      <button className='button cancel-signup-button' onClick={handleOnClose}>Cancel</button>
       </div> 
       

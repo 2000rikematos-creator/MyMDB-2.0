@@ -1,3 +1,7 @@
+.poster{
+  height:fit-content
+}
+
 .movie-list{
     width: auto;
     position: relative;
@@ -5,7 +9,11 @@
     flex-direction: column;
     align-items: center;
     padding: 0;
-
+    line-break: anywhere;
+  line-break: anywhere; 
+  
+  /* Reforço extra para quebra de palavras longas */
+  overflow-wrap: break-word;
 }
 
 .movie-list-background{
@@ -41,7 +49,8 @@
    display: flex;
    flex-direction: column;
    align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
    width: 100vw;
 }
 

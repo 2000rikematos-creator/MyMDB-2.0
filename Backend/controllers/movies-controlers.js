@@ -67,7 +67,7 @@ async function getMovieById(req,res){
 }
 
 async function postReview(req,res,next){
-
+    console.log(req.session.user)
     const validationErrors = validationResult(req)
 
     if(!validationErrors.isEmpty()){

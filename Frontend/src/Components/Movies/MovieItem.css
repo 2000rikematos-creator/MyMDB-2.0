@@ -17,6 +17,7 @@ border-radius: 5px;
 }
 
 .delete-button, .edit-button{
+    margin: 0;
     width: 100px;
      background-color:  var(--imdb-yellow);/* Amarelo IMDb */
     color: #000000;
@@ -31,16 +32,18 @@ border-radius: 5px;
 
 .poster{
     position: relative;
-    height:300px;
     width: 200px;
-    anchor-name: --movie-list-anchor;
+    
 }
 
-.poster:hover .movie-item-button-container:hover{
+.poster:hover{
     cursor: pointer;
+    box-shadow: 20px 20px 20px #000000;
+    transition: transform 2s;
 }
 
 .poster-image{
+    display: block;
     height: auto;
     width: 100%;
     border-radius: 5px;
@@ -59,7 +62,7 @@ li{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 50px;
+    
 }
 .movie-title{
     margin-top: 20px;
@@ -72,19 +75,25 @@ li{
     display: flex;
     flex-direction: row;
     width: auto;
+    height: auto;
+    gap:3px;
     justify-content: space-evenly;
 }
 
+.movie-list-username{
+    -webkit-text-stroke: 0.2px black;
+    font-weight: 600;
+}
+
 .movie-list-star-rating-item{
-    margin: 5px;
     color: var(--imdb-yellow);
     -webkit-text-stroke: 0.1px black;
     font-size: 1.5em;
+    text-shadow: 2px 0px 4px #000000;
 }
 .movie-list-empty-star-rating-item{
-    margin: 5px;
     color: transparent;
-    -webkit-text-stroke: 0.1px black;
+    -webkit-text-stroke: 1px black;
     font-size: 1.5em;
 }
 
@@ -94,7 +103,19 @@ li{
     flex-direction: column;
     align-items: center;
     justify-content:center ;
+    max-width: 60vw;
+    line-break: auto;
+    font-size: 20px;
     -webkit-text-stroke: 0.2px black;
+    
+}
+
+.movie-list-review-text{
+    max-width: 60vw;
+    line-break: auto;
+    font-size: 20px;
+    font-weight: 500;
+    text-shadow: 3px 3px 4px rgba(0,0,0,0.8);
 }
 
 .movie-item{
@@ -105,11 +126,12 @@ li{
     justify-content: center;
     align-items: center;
     text-align: center;
-    top: 15vh;
-    
+    min-height: fit-content;
     color: var(--text-color);
     padding:0;
     width: 60vw;
+    margin-top: 15vh;
+    line-break: auto;
     
 }
 
@@ -117,10 +139,13 @@ li{
 @media(max-width:785px) and (hover:none){
     .movie-item{
         max-width: 60%;
+        margin-top: 10vh;
     }
     .poster:active{
         scale: 1.2;
         transition: transform 0.1s;
     }
+
+    
 
 }

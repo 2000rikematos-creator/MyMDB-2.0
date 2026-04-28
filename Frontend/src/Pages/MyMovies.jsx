@@ -48,7 +48,7 @@ function MyMovies(){
         try{
           
          
-          const response = await fetch(`{${import.meta.env.VITE_SERVER_URL}}/api/movies/movies/${selectedMovie}`, {method:"DELETE", credentials:"include"})
+          const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/movies/movies/${selectedMovie}`, {method:"DELETE", credentials:"include"})
           const responseData = await response.json()
           console.log("response is",responseData)
           if (!response.ok) {
@@ -85,8 +85,8 @@ function MyMovies(){
 return  <PageLayout>
 <SuccessModal successMessage={modalMessage} />
     <MovieList movies={movies} isUpdatable={true} onDelete={handleDelete} onEdit={handleEdit} />
-   {deleteSure ? <ConfirmationModal question="Are you sure you want to delete" onConfirm={handleConfirmDelete} onCancel={handleCancelDelete}/>: null}
-   {isLoadingDelete ? <LoadingModal text="Deleting" /> : null}
+   {deleteSure ? <ConfirmationModal question="Are you sure you want to delete?" onConfirm={handleConfirmDelete} onCancel={handleCancelDelete}/>: null}
+   {isLoadingDelete ? <LoadingModal text="Deleting..." /> : null}
     </PageLayout>
 }
 
