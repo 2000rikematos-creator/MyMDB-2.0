@@ -10,6 +10,7 @@ function Movies(){
 
     const [movies, setMovies] = useState([])
     const [serverError, setServerError] = useState("")
+    const [isLoadingMovies, setIsLoadingMovies] = useState(true)
     
         useEffect(()=>{
 
@@ -20,6 +21,8 @@ function Movies(){
                  setMovies(responseData.movies.reverse())
               }catch(error){
                setServerError("Internal server error, please try again later.")
+              }finally{
+                setIsLoadingMovies(false)
               }
              }
         
@@ -28,7 +31,7 @@ function Movies(){
 
 if(serverError) return <Modal title={serverError}/>
 return <PageLayout>
-    <MovieList movies={movies} />
+    <MovieList isLoadingList={isLoadingMovies} movies={movies} />
 </PageLayout>
 }
 

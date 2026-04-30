@@ -3,8 +3,11 @@ import MovieItem from "./MovieItem"
 import "./MovieList.css"
 import PageLayout from "../Shared/PageLayout"
 import Modal from "../../Modals/Modal"
+import LoadingModal from "../../Modals/LoadingModal"
 
 function MovieList(props) {
+
+   if(props.isLoadingList) return <LoadingModal />
 
    function background(image){
       const styling = {

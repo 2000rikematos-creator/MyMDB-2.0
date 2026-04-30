@@ -2,6 +2,9 @@ import bcrypt from "bcrypt";
 import { validationResult } from "express-validator";
 import HttpError from "../utils/errorHelper.js";
 import User from "../MongoDB/userSchema.js";
+import jwt from "jsonwebtoken";
+
+const secret = process.env.TOKEN_SECRET
 
 function sessionDestroy(req, res,next) {
   req.session.destroy((error) => {
@@ -25,6 +28,7 @@ function verifySession(req, res, next) {
 }
 
 async function userSignup(req, res, next) {
+  console.log("body is", req.body)
   const validationErrors = validationResult(req);
 
   if (!validationErrors.isEmpty()) {
@@ -67,14 +71,10 @@ async function userSignup(req, res, next) {
       id: createdUser._id,
     };
 
-    req.session.user = sessionUser;
+    const token = jwt.sign({data: sessionUser}, secret, {expiresIn: "24h"})
 
-    req.session.save((err) => {
-      if (err) return next(err);
-      res
-        .status(201)
-        .json({ message: "user created", newUser: req.session.user });
-    });
+   res.status(201).json({ message: "user created", newUser: token })
+
   } catch (error) {
     console.log(error);
     return next(new HttpError("internal server error", 500));
@@ -111,12 +111,14 @@ async function userLogin(req, res, next) {
       id: userExists._id,
     };
 
-    req.session.user = user
+
+    const token = jwt.sign({data: user}, secret, {expiresIn: "24h"})
 
     return res
       .status(200)
-      .json({ message: "logged in successfully", user: user });
+      .json({ message: "logged in successfully", user: token });
   } catch (error) {
+    console.log(error)
    return next(error);
   }
 }

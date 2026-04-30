@@ -15,6 +15,7 @@ function SearchMovies(props) {
   const [searchBarisShowing, setSearchBarIsShowing] = useState(false);
   const [searchError, setSearchError] = useState("")
   const dropdownRef = useRef(null)
+  const userToken = localStorage.getItem("token")
 
   function onClickAway(event){
 
@@ -41,11 +42,11 @@ function SearchMovies(props) {
     setInput(event.target.value);
     setIsLoadingSearchResults(true);
     const searchInput = { title: input };
-
+    
     try {
       const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/movies/search`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Authorization":`Bearer ${userToken}` },
         body: JSON.stringify(searchInput),
       });
       const responseData = await response.json();
@@ -60,12 +61,13 @@ function SearchMovies(props) {
 
   async function selectMovie(movie) {
     props.onSelectMovie()
+    props.onActiveSearch(false)
     setIsLoading(true);
     setSearchBarIsShowing(false);
     setInput("");
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_SERVER_URL}/api/movies/movies/${movie.imdbID}`,
+        `${import.meta.env.VITE_SERVER_URL}/api/movies/movies/${movie.imdbID}`, {method:"GET", headers:{"Content-type":"application/json", "Authorization":`Bearer ${userToken}`}}
       );
       const responseData = await response.json();
       setIsLoading(false);

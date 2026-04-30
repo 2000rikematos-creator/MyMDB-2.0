@@ -16,12 +16,13 @@ const {user} = useAuth()
 const {id} = useParams()
 const [isLoading, setIsLoading] = useState(false)
 const [modalMessage, setModalMessage] = useState("")
+const userToken = localStorage.getItem("token")
 
 useEffect(()=>{
         async function getMovieDetails(){
             setIsLoading(true)
           try{
-            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/movies/review/${id}`)
+            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/movies/review/${id}`,{headers:{"Content-Type":"application-json", "Authorization":`Bearer ${userToken}`}})
             if(!response.ok) throw new Error("review not found") 
             const responseData = await response.json()
             setReview(responseData.review)
@@ -42,7 +43,7 @@ useEffect(()=>{
    async function handleSubmit(review){
         setIsLoading(true)
         try{
-            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/movies/review/${id}`, {method:"PATCH", headers:{"Content-Type":"application/json"}, credentials:"include", body: JSON.stringify(review)})
+            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/movies/review/${id}`, {method:"PATCH", headers:{"Content-Type":"application/json", "Authorization":`Bearer ${userToken}`}, body: JSON.stringify(review)})
             const responseData = await response.json()
             if(!response.ok){ throw new Error(responseData.message)}
 

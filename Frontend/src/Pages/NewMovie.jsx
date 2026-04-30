@@ -12,13 +12,14 @@ function NewMovie(props){
     const [isLoading, setIsLoading] = useState(false)
     const [modalMessage, setModalMessage] = useState("")
     const {user} = useAuth() 
+   const userToken = localStorage.getItem("token") 
     const navigate = useNavigate()
 
     useEffect(()=>{
         async function getMovieDetails(){
             setIsLoading(true)
           try{
-            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/movies/movies/${id}`) 
+            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/movies/movies/${id}`,{headers:{"Content-Type":"pplication/json", "Authorization":`Bearer ${userToken}`}}) 
             const movie = await response.json();
              setMovieDetails(movie)
             setIsLoading(false)
@@ -34,12 +35,12 @@ function NewMovie(props){
     },[id])
 
      async function handleSubmit(review) {
+    
     setIsLoading(true);
     try {
       const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/movies/reviews`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
+        headers: { "Content-Type": "application/json", "Authorization":`Bearer ${userToken}` },
         body: JSON.stringify(review),
       });
       const responseData = await response.json();
@@ -69,7 +70,7 @@ return(
                 user={user}
             />
         )}
-        {!isLoading && !movieDetails && <p>Erro ao carregar os dados.</p>}
+        {!isLoading && !movieDetails && <p>Could not load data.</p>}
     </PageLayout>
 );
     

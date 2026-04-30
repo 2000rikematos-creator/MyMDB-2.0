@@ -4,6 +4,7 @@ import Modal from './Modal';
 import FormInput from '../Components/Shared/FormInput';
 import sendRequest from '../Hooks/HttpRequest';
 import LoadingModal from './LoadingModal';
+import { jwtDecode } from 'jwt-decode';
 
 const LoginModal = (props) => {
 
@@ -20,10 +21,19 @@ const LoginModal = (props) => {
   event.preventDefault();
   setLoadingState(true)
   try{
-    const response = await sendRequest(`${import.meta.env.VITE_SERVER_URL}/api/users/login`,"POST", formData)
-    setLoadingState(false)
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/users/login`,{method:"POST",headers:{"Content-Type":"application/json"}, body:JSON.stringify(formData)})
+    
+    const responseData = await response.json()
+    if(!response.ok || !responseData.user){throw new Error({message:"could not login",error: responseData})}
+
+    const userToken = responseData.user
+    const storeToken = localStorage.setItem("token", userToken)
+    
+    const userDecoded = jwtDecode(userToken)
+    const userData = userDecoded.data
     setFormData({email:"", password:""})
-    props.onSuccess("login",response.user)
+    setLoadingState(false)
+    props.onSuccess("login",userData)
   }catch(error){
     console.log(error)
     setLoadingState(false)

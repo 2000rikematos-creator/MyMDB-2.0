@@ -28,8 +28,8 @@
     width: auto;
     height: 60%;
     max-height: 400px;
-    margin-right: 20px;
     border-radius: 5px;
+    margin-right: 20px;
 }
 
 .movie-review-form{
@@ -101,7 +101,12 @@
 }
 
 
-@media(max-width:785px) and (hover:none){
+@media(max-width:900px) {
+
+  .poster-img{
+    margin-right: 0;
+  }
+
 .movie-review-container {
     position: relative;
     top:15vh;
@@ -120,8 +125,8 @@
   align-items: center;
 
 }
-
-.stars label:active,
+@media(hover:none){
+  .stars label:active,
 .stars label:active ~ label,
 .stars input:checked ~ label {
   color: var(--imdb-yellow); /* Cor da estrela preenchida */
@@ -131,6 +136,8 @@
 .stars label:active {
   transform: scale(1.5);
 }
+}
+
 
 
 }

@@ -1,0 +1,15 @@
+.closing-icon{
+    position: absolute;
+    stroke-width: 3px;
+    stroke: var(--imdb-yellow);
+    height: 7vh;
+    top: 1vh;
+    right: 4vw;
+    width: auto;
+}
+
+@media(max-width:785px) and (hover:none){
+    .closing-icon:active{
+        scale:1.1;
+    }
+}

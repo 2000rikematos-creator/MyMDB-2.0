@@ -67,8 +67,9 @@ async function getMovieById(req,res){
 }
 
 async function postReview(req,res,next){
-    console.log(req.session.user)
+    console.log("verified is", req.userData)
     const validationErrors = validationResult(req)
+    const userID = req.userData.id
 
     if(!validationErrors.isEmpty()){
         const errors = validationErrors.array().map((err)=>{return err.msg})
@@ -79,7 +80,7 @@ async function postReview(req,res,next){
     const userReview = req.body
 
 try{
-    const reviewIsDuplicated = await Review.find({imdbID: userReview.movieData.imdbID, user: req.session.user.id})
+    const reviewIsDuplicated = await Review.find({imdbID: userReview.movieData.imdbID, user: userID})
     if(reviewIsDuplicated.length > 0){ throw new HttpError("You already reviewed this movie", 500)} 
 }catch(error){
    return next(error)
@@ -91,7 +92,7 @@ try{
  const newReview = new Review({
       review:userReview.review,
        starRating: userReview.starRating,
-        user: req.session.user.id,
+        user: userID,
          movieData: userReview.movieData,
          imdbID: userReview.movieData.imdbID
         })
@@ -108,15 +109,14 @@ try{
 }
 
 async function getMoviesByUser(req,res,next){
-
-    try{
-        const userID = req.session.user.id
-        const userReviews = await Review.find({user: userID})
+    const userID = req.userData.id
+   try{
+      const userReviews = await Review.find({user: userID})
         res.status(200).json(userReviews);
 
     }catch(error){
        return next(error)
-    }
+ }
 
 }
 
@@ -126,7 +126,7 @@ async function deleteMovie(req,res,next){
     const id = req.params.id
     const reviewToDelete = await Review.findById(id)
     if(!reviewToDelete){throw new HttpError("review not found",404)}
-    const userIsCorrect = reviewToDelete.user._id.toString() === req.session.user.id
+    const userIsCorrect = reviewToDelete.user._id.toString() === req.userData.id
     if(!userIsCorrect){throw new Error("user is not corrrect") }
     const deleteMovie = await Review.findByIdAndDelete(id) 
     res.status(200).json({message:"deleted sucessfully", review: id})

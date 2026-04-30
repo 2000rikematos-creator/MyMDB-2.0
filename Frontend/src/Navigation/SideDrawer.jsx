@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "./SideDrawer.css";
+import ClosingIcon from "../Components/Icons/ClosingIcon";
 
 function SideDrawer(props) {
   const sideDrawer = useRef(null);
@@ -26,7 +27,7 @@ function SideDrawer(props) {
 
   return (
     <div ref={sideDrawer} className={`side-drawer ${props.isVisible ? 'open': ''}`}>
-      {props.children}
+      {props.children}<ClosingIcon closable={props.closingSignIsVisible} onClick={()=>{props.onClose()}}/>
     </div>
   );
 }

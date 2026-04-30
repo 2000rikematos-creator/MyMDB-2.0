@@ -62,7 +62,7 @@ function NavBar(props) {
         return "Home"
         break;
       case "/MyMovies":
-      return "My Movies"
+      return "My Reviews"
         break;
       default:
         return "/"
@@ -78,10 +78,7 @@ function NavBar(props) {
   }
 
   function onSuccessHandler(auth, userData) {
-    console.log(isLoggedIn);
-    console.log(userData);
     login(userData);
-    console.log(user);
 
     setFailureMessage(null);
     if (auth === "login") {
@@ -95,7 +92,7 @@ function NavBar(props) {
     }
     if (auth === "signup") {
       console.log(user);
-      setSuccessMessage(`Welcome ${userData.newUser.username}`);
+      setSuccessMessage(`Welcome ${userData.username}`);
       setSignupIsShowing(false);
       setAuthTry(true);
       setTimeout(() => {
@@ -156,10 +153,10 @@ function onSearchIsActive(status){
       {screenIsSmall ? 
       <>
       <MenuIcon onClick={handleMenuClick}/> 
-       <SideDrawer onClose={onSideDrawerClose} isVisible={sideDrawerIsVisible}> {!isLoggedIn ? (
+       <SideDrawer closingSignIsVisible={!searchIsActive} onClose={onSideDrawerClose} isVisible={sideDrawerIsVisible}> {!isLoggedIn ? (
             <NavBarItems>
               <NavBarItem >
-                <button className="button signup-button" onClick={onClickSignupHandler}> Signup </button>
+                <button className="button signup-button" onClick={onClickSignupHandler}> Sign up </button>
             </NavBarItem> 
              <NavBarItem> 
                 <button className="button login-button" onClick={onClickLoginHandler}> Login </button>
@@ -171,7 +168,7 @@ function onSearchIsActive(status){
                 <button className="button logout-button" onClick={() => {logout(); ; setSideDrawerIsVisible(false)}}>Logout</button>
                 </NavBarItem>
             <NavBarItem isHidden={searchIsActive}>
-                <button className="button my-movies-button" onClick={()=>{navigate("/MyMovies"); setSideDrawerIsVisible(false)}}>My Movies</button>
+                <button className="button my-movies-button" onClick={()=>{navigate("/MyMovies"); setSideDrawerIsVisible(false)}}>My Reviews</button>
             </NavBarItem>
             <NavBarItem>
               <SearchMovies onActiveSearch={onSearchIsActive} onSelectMovie={()=>{setSideDrawerIsVisible(false)}} />
@@ -181,7 +178,7 @@ function onSearchIsActive(status){
          </SideDrawer></>   : !isLoggedIn ? (
             <NavBarItems>
               <NavBarItem isVisible={false}>
-                <button className="button signup-button" onClick={onClickSignupHandler}> Signup </button>
+                <button className="button signup-button" onClick={onClickSignupHandler}> Sign up </button>
             </NavBarItem> 
              <NavBarItem isVisible={false}> 
                 <button className="button login-button" onClick={onClickLoginHandler}> Login </button>
@@ -194,7 +191,7 @@ function onSearchIsActive(status){
                 <button className="button logout-button" onClick={() => {logout()}}>Logout</button>
                 </NavBarItem>
             <NavBarItem>
-                <button  className="button my-movies-button" onClick={()=>{navigate("/MyMovies")}}>My Movies</button>
+                <button  className="button my-movies-button" onClick={()=>{navigate("/MyMovies")}}>My Reviews</button>
             </NavBarItem>
             <NavBarItem>
               <SearchMovies onActiveSearch={onSearchIsActive} onSelectMovie={()=>{setSideDrawerIsVisible(false)}}/>

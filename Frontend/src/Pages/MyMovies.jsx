@@ -16,20 +16,27 @@ function MyMovies(){
     const [selectedMovie, setSelectedMovie] = useState("")
     const [isLoadingDelete, setIsLoadingDelete] = useState(false)
     const [modalMessage, setModalMessage] = useState("")
+    const [isLoadingMovies, setIsLoadingMovies] = useState(true)
+    const userToken = localStorage.getItem("token")
 
     useEffect(()=>{
 
+      
+
         if(!user) return
 
-        console.log("user is", user)
          async function getMovies(){
+          console.log("token issss", userToken)
            try{
-             const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/movies/mymovies`, {credentials:"include"})
+             const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/movies/mymovies`, {method:"GET",headers:{"Content-Type":"application/json", "Authorization":`Bearer ${userToken}`}})
              const responseData = await response.json()
              if(!response.ok){throw new Error(responseData.message)}
              setMovies(responseData.reverse())
+             
           }catch(error){
              console.log(error)
+          }finally{
+            setIsLoadingMovies(false)
           }
          }
     
@@ -47,10 +54,8 @@ function MyMovies(){
         setDeleteSure(false)
         try{
           
-         
-          const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/movies/movies/${selectedMovie}`, {method:"DELETE", credentials:"include"})
+          const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/movies/movies/${selectedMovie}`, {method:"DELETE",headers:{"Content-type":"application/json", "Authorization":`Bearer ${userToken}`}})
           const responseData = await response.json()
-          console.log("response is",responseData)
           if (!response.ok) {
             throw new Error(responseData.message)
           }
@@ -84,7 +89,7 @@ function MyMovies(){
 
 return  <PageLayout>
 <SuccessModal successMessage={modalMessage} />
-    <MovieList movies={movies} isUpdatable={true} onDelete={handleDelete} onEdit={handleEdit} />
+    <MovieList isLoadingList={isLoadingMovies} movies={movies} isUpdatable={true} onDelete={handleDelete} onEdit={handleEdit} />
    {deleteSure ? <ConfirmationModal question="Are you sure you want to delete?" onConfirm={handleConfirmDelete} onCancel={handleCancelDelete}/>: null}
    {isLoadingDelete ? <LoadingModal text="Deleting..." /> : null}
     </PageLayout>

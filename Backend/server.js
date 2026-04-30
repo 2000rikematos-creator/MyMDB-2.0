@@ -3,7 +3,6 @@ import express from "express"
 import moviesRoutes from "./routes/movies-routes.js"
 import usersRoutes from "./routes/users-routes.js"
 import cors from "cors"
-import session from "express-session"
 import mongoose from "mongoose"
 import HttpError from "./utils/errorHelper.js"
 
@@ -18,18 +17,7 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,               
-    saveUninitialized: false,    
-    rolling: true,              
-    cookie: {
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-        httpOnly: true,       
-        maxAge: 1000 * 60 * 60 * 24 
-    }
-}));
+
 app.use(cors(corsOptions));
 app.use(express.json());
 

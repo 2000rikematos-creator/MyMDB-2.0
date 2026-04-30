@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Modal from "./Modal";
 import FormInput from "../Components/Shared/FormInput";
 import sendRequest from "../Hooks/HttpRequest"
+import { jwtDecode } from "jwt-decode";
 import { v4 as uuidv4 } from 'uuid';
 import "./SignupModal.css"
 
@@ -22,16 +23,36 @@ function SignupModal(props){
 
  async function handleSubmit(event){
     event.preventDefault();
-    setloadingState(true)
-    try{
-    const response = await sendRequest(`${import.meta.env.VITE_SERVER_URL}/api/users/signup`, "POST", formData)
-    setloadingState(false)
-    setFormData({email:"", username:"", password:""})
-    props.onSuccess("signup", response)
-    }catch(error){
-      setloadingState(false)  
-      props.onFailure("signup", error.message)
-      console.log(error.message)
+    setloadingState(true);
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/api/users/signup`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        },
+      );
+      const responseData = await response.json();
+
+      const token = await responseData.newUser;
+      if(!response.ok || !token){
+        return new Error({message:"Could not verify user"})
+      }
+
+      const storeToken = localStorage.setItem("token", token)
+
+      const userDecoded = jwtDecode(token);
+      const userData = userDecoded.data;
+      setloadingState(false);
+      setFormData({ email: "", username: "", password: "" });
+      props.onSuccess("signup", userData);
+    } catch (error) {
+      setloadingState(false);
+      props.onFailure("signup", error.message);
+      console.log(error.message);
     }
     
   }
