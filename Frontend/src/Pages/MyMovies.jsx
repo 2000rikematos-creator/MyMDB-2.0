@@ -90,7 +90,7 @@ function MyMovies(){
 return  <PageLayout>
 <SuccessModal successMessage={modalMessage} />
     <MovieList isLoadingList={isLoadingMovies} movies={movies} isUpdatable={true} onDelete={handleDelete} onEdit={handleEdit} />
-   {deleteSure ? <ConfirmationModal question="Are you sure you want to delete?" onConfirm={handleConfirmDelete} onCancel={handleCancelDelete}/>: null}
+   {deleteSure ? <ConfirmationModal confirmClassName="confirm-delete-button" cancelClasseName="cancel-submit-button" question="Are you sure you want to delete?" onConfirm={handleConfirmDelete} onCancel={handleCancelDelete}/>: null}
    {isLoadingDelete ? <LoadingModal text="Deleting..." /> : null}
     </PageLayout>
 }

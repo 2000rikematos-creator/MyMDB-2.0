@@ -11,8 +11,7 @@ const reviewSchema = new mongoose.Schema({
         maxlength: 500
     },
     starRating:{
-        type: Number,
-        required: true,
+        type: Number
     },
     movieData:{
         type: Object,

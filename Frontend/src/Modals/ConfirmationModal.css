@@ -1,26 +1,22 @@
 .button-container{
     display: flex;
-    gap:30px;
+    gap:100px;
     justify-content: center;
 }
 
-.cancel-delete-button{
+.cancel-button, .confirm-button{
+    height: auto;
+    width:100px;
     background-color: transparent;
     border: solid 2px var(--imdb-yellow);
     color: var(--imdb-yellow);
 }
-.cancel-delete-button:hover{
-    background-color: transparent;
-    border: solid 2px var(--imdb-yellow);
-    color: var(--imdb-yellow);
-}
-
 
 .button:hover{
     scale:1.1;
 }
 
-@media(max-width:785px)and (hover:none){
+@media(max-width:785px) and (hover:none){
     .button:active{
         scale:1.1;
     }

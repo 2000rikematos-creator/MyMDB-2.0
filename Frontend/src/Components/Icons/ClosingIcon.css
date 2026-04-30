@@ -8,6 +8,11 @@
     width: auto;
 }
 
+.closing-icon:hover{
+    scale:1.1;
+    cursor: pointer;
+}
+
 @media(max-width:785px) and (hover:none){
     .closing-icon:active{
         scale:1.1;

@@ -10,9 +10,6 @@
     align-items: center;
     padding: 0;
     line-break: anywhere;
-  line-break: anywhere; 
-  
-  /* Reforço extra para quebra de palavras longas */
   overflow-wrap: break-word;
 }
 

@@ -1,11 +1,13 @@
 import React, { useState, useRef } from "react";
 import "./NewMovieReview.css";
+import ConfirmationModal from "../../Modals/ConfirmationModal"
 
 
 function NewMovieReview(props) {
   console.log("details is", props.ratingValue)
   const movie = props.details;
-  const [starValue, setStarValue] = useState("");
+  const [zeroStarsConfirmation, setZeroStarsConfirmation] = useState(false)
+  const [starValue, setStarValue] = useState(0);
   const [review, setReview] = useState({
     user: props.user.id,
     review: props.review || "",
@@ -37,15 +39,29 @@ function NewMovieReview(props) {
 
   function handleSubmit(event){
     event.preventDefault();
+    if(starValue === 0) {return setZeroStarsConfirmation(true)}
     props.onSubmit({...review, starRating: starValue})
   }
+
+  function handleConfirmSubmit(){
+    props.onSubmit({...review, starRating: starValue})
+  }
+
+
 
   function handleStartTypingReview(event){
     textArea.current.scrollIntoView({behavior:"smooth"})
   }
 
+
+  function handleCancelSubmit(){
+    setZeroStarsConfirmation(false)
+  }
+
   return (
+    
     <div className="movie-review-container">
+     {zeroStarsConfirmation ? <ConfirmationModal cancelClassName="cancel-submit-button" confirmClassName="confirm-submit-button" question="Do you want to give 0 stars?" onConfirm={handleConfirmSubmit} onCancel={handleCancelSubmit}/> : null} 
       <div className="movie-poster">
         {" "}
         <img className="poster-img" src={movie.Poster} />{" "}

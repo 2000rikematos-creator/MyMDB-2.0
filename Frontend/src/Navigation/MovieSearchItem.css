@@ -11,9 +11,11 @@ margin-bottom: 10px;
 }
 
 .mini-poster{
+    background-position: center;
     margin-right: 10px;
     height: 100px;
-    width:auto
+    width:auto;
+    max-width: 80px;
 }
 
 .search-results-movie-title{
