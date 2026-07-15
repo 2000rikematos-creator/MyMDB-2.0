@@ -34,6 +34,8 @@ function MyMovies(){
              setMovies(responseData.reverse())
              
           }catch(error){
+            setModalMessage("Error loading the movies")
+            setTimeout(()=>setModalMessage(""),2000)
           }finally{
             setIsLoadingMovies(false)
           }
