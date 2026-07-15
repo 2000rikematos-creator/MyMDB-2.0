@@ -9,10 +9,8 @@ async function sendRequest(url, method = "GET", body = null){
     }
 
     const response = await fetch(url, options)
-   console.log("response is",response)
     if (!response.ok) {
         const errorData = await response.json().catch(() => null);
-        console.log(errorData)
         throw new Error(errorData.message || "request failed")
         
     }

@@ -29,7 +29,10 @@ useEffect(()=>{
              setMovieDetails(responseData.review.movieData)
             setIsLoading(false)
         }catch(error){
-            console.log(error)
+            setModalMessage("Internal error")
+            setTimeout(() => {
+                setModalMessage("")
+            }, 1000);
         }finally{
             setIsLoading(false)
             

@@ -12,12 +12,8 @@ function login(userData){
 }
 
 async function logout(){
-    try{
     const destroyToken = localStorage.removeItem("token")
     setUser(null)
-    }catch(error){
-        console.log(error)
-    }
     
 }
 

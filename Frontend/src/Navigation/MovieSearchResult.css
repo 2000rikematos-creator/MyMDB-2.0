@@ -10,13 +10,17 @@
     border-radius: 0px 0px 15px 15px;
     z-index: 1;
     background-color:var(--imdb-dark-gray-transparent);
-    width: auto;
+    min-width: 100%;
     display: flex;
     flex-direction: column;
 
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+}
+
+.loading-search{
+    width: 100%;
 }
 
 .movie-search-list::-webkit-scrollbar {
