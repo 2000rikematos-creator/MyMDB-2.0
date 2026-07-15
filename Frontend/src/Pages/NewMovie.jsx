@@ -5,6 +5,7 @@ import Modal from "../Modals/Modal";
 import { useAuth } from "../authentication/authContext";
 import PageLayout from "../Components/Shared/PageLayout";
 import SuccessModal from "../Modals/SuccessModal";
+import LoadingModal from "../Modals/LoadingModal";
 
 function NewMovie(props){
     const {id} = useParams()
@@ -24,7 +25,8 @@ function NewMovie(props){
              setMovieDetails(movie)
             setIsLoading(false)
         }catch(error){
-            console.log(error)
+          setModalMessage("Internal error")
+          setTimeout(()=>setModalMessage(""),2000)
         }finally{
             setIsLoading(false)
         }
@@ -63,14 +65,13 @@ function NewMovie(props){
 return(
     <PageLayout >
         <SuccessModal failureMessage={modalMessage} />
-        {isLoading && <Modal title="loading" />}
+        {isLoading && <LoadingModal />}
         {!isLoading && movieDetails && (
             <NewMovieReview onSubmit={handleSubmit}
                 details={movieDetails}
                 user={user}
             />
         )}
-        {!isLoading && !movieDetails && <p>Could not load data.</p>}
     </PageLayout>
 );
     

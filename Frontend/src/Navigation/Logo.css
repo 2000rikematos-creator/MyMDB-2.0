@@ -22,9 +22,12 @@
 }
 
 
-@media(max-width:785px) and (hover:none){
+@media(max-width:785px){
+    .logo-image{
+        width: 20%;
+    }
     .logo-container{
-        width:20%;
+        width:fit-content;
     }
     .logo-image:active{
         scale: 1.1;

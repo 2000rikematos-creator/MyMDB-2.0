@@ -7,8 +7,6 @@ import LoadingModal from "../../Modals/LoadingModal"
 
 function MovieList(props) {
 
-   if(props.isLoadingList) return <LoadingModal />
-
    function background(image){
       const styling = {
          backgroundImage: `url(${image})`,

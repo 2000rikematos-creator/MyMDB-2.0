@@ -3,7 +3,8 @@
 html, body, #root {
     --imdb-font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     height: 100%;
-    width: 100%;
+    max-width: 100dvw;
+    
     margin: 0;
     padding: 0;
   --imdb-yellow: #f5c518;
@@ -16,10 +17,24 @@ html, body, #root {
 
 body {
     font-family: var(--imdb-font);
-    margin-top: 0px;
-    min-height: 100vh; 
+    margin: 0px;
+    min-height: 100dvh;
+    max-width: 100dvw;
+    overflow-x: hidden; 
     display: flex;
     flex-direction: column;
     background-color:var(--imdb-black);
     font-family: sans-serif;
+}
+
+body::-webkit-scrollbar {
+background-color: transparent;
+  width: 5px; 
+}
+body::-webkit-scrollbar-track {
+  background-color: transparent ;
+}
+body::-webkit-scrollbar-thumb {
+  background: var(--imdb-yellow); 
+  border-radius: 15px;
 }

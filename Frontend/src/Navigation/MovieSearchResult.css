@@ -1,16 +1,16 @@
 .movie-search-list{
     padding-top: 0;
+    padding: 0;
     position: absolute;
-    padding-left: 0px;
     max-height: 80vh;
     height: auto;
     align-items: start;    
-    overflow:scroll;
+    overflow-y:scroll;
     overflow-x: hidden;
-    
+    border-radius: 0px 0px 15px 15px;
     z-index: 1;
     background-color:var(--imdb-dark-gray-transparent);
-    width: 200px;
+    width: auto;
     display: flex;
     flex-direction: column;
 
@@ -19,3 +19,14 @@
     pointer-events: auto;
 }
 
+.movie-search-list::-webkit-scrollbar {
+background-color: transparent;
+  width: 5px; 
+}
+.movie-search-list::-webkit-scrollbar-track {
+  background-color: transparent ;
+}
+.movie-search-list::-webkit-scrollbar-thumb {
+  background: var(--imdb-yellow); 
+  border-radius: 15px;
+}

@@ -4,7 +4,7 @@ import Modal from "../Modals/Modal"
 const AuthContext = createContext()
 
 function AuthProvider(props){
-const [user, setUser] = useState(null)
+const [user, setUser] = useState(()=>localStorage.getItem("token"))
 
 
 function login(userData){

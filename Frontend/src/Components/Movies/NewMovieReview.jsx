@@ -4,16 +4,17 @@ import ConfirmationModal from "../../Modals/ConfirmationModal"
 
 
 function NewMovieReview(props) {
-  console.log("details is", props.ratingValue)
   const movie = props.details;
   const [zeroStarsConfirmation, setZeroStarsConfirmation] = useState(false)
   const [starValue, setStarValue] = useState(0);
+  
   const [review, setReview] = useState({
     user: props.user.id,
     review: props.review || "",
     movieId: movie.imdbID,
     movieData: movie,
   });
+  const [charCount, setCharCount] = useState(review.review.length)
   const textArea = useRef(null)
 
   function handleStarChange(event) {
@@ -22,7 +23,7 @@ function NewMovieReview(props) {
 
   function handleChange(event) {
     const textElement = textArea.current
-
+    setCharCount(500 - event.target.value.length)
     textElement.style.height = "auto";
 
    textElement.style.height = `${textElement.scrollHeight}px`
@@ -61,7 +62,7 @@ function NewMovieReview(props) {
   return (
     
     <div className="movie-review-container">
-     {zeroStarsConfirmation ? <ConfirmationModal cancelClassName="cancel-submit-button" confirmClassName="confirm-submit-button" question="Do you want to give 0 stars?" onConfirm={handleConfirmSubmit} onCancel={handleCancelSubmit}/> : null} 
+     {zeroStarsConfirmation ? <ConfirmationModal confirmationQuestion="Submit review?" cancelClassName="cancel-submit-button" confirmClassName="confirm-submit-button" question="Do you want to give 0 stars?" onConfirm={handleConfirmSubmit} onCancel={handleCancelSubmit}/> : null} 
       <div className="movie-poster">
         {" "}
         <img className="poster-img" src={movie.Poster} />{" "}
@@ -95,7 +96,10 @@ function NewMovieReview(props) {
           </form>
           <form onSubmit={handleSubmit} className="review-form">
             <input type="hidden" name="starRating" value={starValue}/>
-            <textarea rows="1" maxLength={500} ref={textArea} className="review-input-textbox" onChange={handleChange} onFocus={handleStartTypingReview} name="review" value={review.review}/>
+           <div className="review-input-with-word-counter">
+            <textarea rows="auto" maxLength={500} ref={textArea} className="review-input-textbox" onChange={handleChange} onFocus={handleStartTypingReview} name="review" value={review.review}/>
+            <span className="char-counter">{charCount}</span>
+            </div> 
             <input className="submit-review-button" type="submit" value="Submit Review"/>
           </form>
         </div>

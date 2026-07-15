@@ -5,6 +5,7 @@ import FormInput from '../Components/Shared/FormInput';
 import sendRequest from '../Hooks/HttpRequest';
 import LoadingModal from './LoadingModal';
 import { jwtDecode } from 'jwt-decode';
+import "./LoginModal.css"
 
 const LoginModal = (props) => {
 
@@ -50,8 +51,10 @@ const LoginModal = (props) => {
 
  if(!props.isOpen) return null 
  
- return <Modal onClose={props.onClose} title="Login">
-  {!loadingState ? <form className="signup-form" onSubmit={handleSubmit} >
+ return <Modal onClose={props.onClose}>
+  <div className='login-modal'>
+    <h1 className='login-modal-title'>Login</h1>
+{!loadingState ? <form className="signup-form" onSubmit={handleSubmit} >
     <div className='form-inputs'>
       <FormInput className="input email-input" onChange={handleChange} type="text" placeholder="email" name="email" value={formData.email}/>
       <FormInput className="input password-input" onChange={handleChange} type="password" placeholder="password" name="password" value={formData.password}/>
@@ -64,6 +67,8 @@ const LoginModal = (props) => {
       </div> 
       
     </form> : <LoadingModal />}
+  </div>
+  
     
   </Modal>
  

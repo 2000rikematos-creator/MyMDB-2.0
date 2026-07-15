@@ -3,7 +3,7 @@
 }
 
 .movie-list{
-    width: auto;
+    max-width: 100dvw;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -20,7 +20,7 @@
 
 .movie-list-background-image{
   background: rgba(0, 0, 0, 0.9);
-  width: 80vw;
+  width:100dvw;
   overflow: hidden;
   filter: blur(6px);
   height: 100vh;

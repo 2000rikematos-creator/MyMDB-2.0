@@ -60,7 +60,9 @@ function SignupModal(props){
   if (!props.isOpen) return null;
 
  return <Modal onClose={props.onClose} title="Signup">
- {!loadingState ? <form className="signup-form" onSubmit={handleSubmit}>
+  <div className="login-modal">
+    <h1 className="login-modal-title">Sign up</h1> 
+    {!loadingState ? <form className="signup-form" onSubmit={handleSubmit}>
     <div className="form-inputs">
       <FormInput className="input email-input" onChange={handleChange} type="text" placeholder="email" name="email" value={formData.email}/>
     <FormInput className="input username-input"  onChange={handleChange} type="text" placeholder="username" name="username" value={formData.username}/>
@@ -72,6 +74,8 @@ function SignupModal(props){
     <button className="button cancel-signup-button" onClick={onCloseHandler}>Cancel</button>
      </div>
   </form> : <h1>Creating User</h1>} 
+  </div>
+ 
  </Modal>
 }
 

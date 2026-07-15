@@ -75,13 +75,23 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 50vh;
   gap:20px;
 
 }
 
-
+.review-input-with-word-counter{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  gap: 5px;
+}
+.char-counter{
+  color: var(--imdb-yellow);
+  font-size: 15px;
+}
 
 .review-input-textbox {
   background-color: var(--imdb-dark-gray);
@@ -104,6 +114,10 @@
 
 
 @media(max-width:900px) {
+
+  .review-form{
+    align-items: center;
+  }
 
   .poster-img{
     margin-right: 0;

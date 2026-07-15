@@ -38,7 +38,7 @@ border-radius: 5px;
 
 .poster:hover{
     cursor: pointer;
-    box-shadow: 20px 20px 20px #000000;
+    scale: 1.1;
     transition: transform 2s;
 }
 
@@ -51,7 +51,6 @@ border-radius: 5px;
 }
 @media(hover:hover){
   .poster:hover{
-    scale: 1.2;
     transition: transform 0.1s;
 }  
 

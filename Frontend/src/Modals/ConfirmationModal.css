@@ -1,7 +1,23 @@
+.confirmation-modal{
+    background-color: var(--imdb-dark-gray);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    gap:2em;
+    border-radius: 4px;
+}
+
+.confirmation-modal h1{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 100;
+    color: var(--imdb-yellow);
+}
+
 .button-container{
     display: flex;
-    gap:100px;
-    justify-content: center;
+    gap: 2em;
+    justify-content: space-around;
 }
 
 .cancel-button, .confirm-button{

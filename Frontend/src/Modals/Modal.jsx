@@ -5,8 +5,9 @@ const Modal = (props) => {
 
   return ReactDOM.createPortal(
     <div className="modal-overlay">
+      
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <h1 className='modal-title'>{props.title}</h1>
+        <h1>{props.title}</h1>
         {props.children}
       </div>
     </div>,

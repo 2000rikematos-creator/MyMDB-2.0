@@ -26,15 +26,14 @@ function MyMovies(){
         if(!user) return
 
          async function getMovies(){
-          console.log("token issss", userToken)
            try{
+            setIsLoadingMovies(true)
              const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/movies/mymovies`, {method:"GET",headers:{"Content-Type":"application/json", "Authorization":`Bearer ${userToken}`}})
              const responseData = await response.json()
              if(!response.ok){throw new Error(responseData.message)}
              setMovies(responseData.reverse())
              
           }catch(error){
-             console.log(error)
           }finally{
             setIsLoadingMovies(false)
           }
@@ -68,7 +67,6 @@ function MyMovies(){
           }, 1000);
           
         }catch(error){
-          console.log(error)
         }finally{
           setIsLoadingDelete(false)
           setSelectedMovie("")
@@ -89,9 +87,10 @@ function MyMovies(){
 
 return  <PageLayout>
 <SuccessModal successMessage={modalMessage} />
+{isLoadingMovies ? <LoadingModal />:null}
     <MovieList isLoadingList={isLoadingMovies} movies={movies} isUpdatable={true} onDelete={handleDelete} onEdit={handleEdit} />
-   {deleteSure ? <ConfirmationModal confirmClassName="confirm-delete-button" cancelClasseName="cancel-submit-button" question="Are you sure you want to delete?" onConfirm={handleConfirmDelete} onCancel={handleCancelDelete}/>: null}
-   {isLoadingDelete ? <LoadingModal text="Deleting..." /> : null}
+   {deleteSure ? <ConfirmationModal confirmClassName="confirm-delete-button" cancelClasseName="cancel-submit-button" confirmationQuestion="Delete review?" onConfirm={handleConfirmDelete} onCancel={handleCancelDelete}/>: null}
+   {isLoadingDelete ? <LoadingModal /> : null}
     </PageLayout>
 }
 

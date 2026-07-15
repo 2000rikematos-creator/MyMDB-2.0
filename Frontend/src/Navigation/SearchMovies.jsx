@@ -5,6 +5,7 @@ import MovieSearchResults from "./MovieSearchResults";
 import Modal from "../Modals/Modal";
 import NavBarItem from "./NavBarItem";
 import "./SearchMovies.css"
+import LoadingModal from "../Modals/LoadingModal";
 
 function SearchMovies(props) {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ function SearchMovies(props) {
   async function handleChange(event) {
     setInput(event.target.value);
     setIsLoadingSearchResults(true);
-    const searchInput = { title: input };
+    const searchInput = { title: event.target.value };
     
     try {
       const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/movies/search`, {
@@ -75,7 +76,6 @@ function SearchMovies(props) {
       navigate(`/NewMovie/${movie.imdbID}`);
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
     }
   }
 
@@ -103,7 +103,7 @@ function SearchMovies(props) {
           <button className="button add-review-button" onClick={onClickAddHandler}>Add Review</button>
         </NavBarItem>
       )}
-      {isLoading ? <Modal title="Loading" /> : null}
+      {isLoading ? <LoadingModal /> : null}
     </div>
   );
 }
