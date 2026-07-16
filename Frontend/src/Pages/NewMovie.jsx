@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import NewMovieReview from "../Components/Movies/NewMovieReview";
 import Modal from "../Modals/Modal";
-import { useAuth } from "../authentication/authContext";
+import { AuthContext } from "../authentication/authContext";
 import PageLayout from "../Components/Shared/PageLayout";
 import SuccessModal from "../Modals/SuccessModal";
 import LoadingModal from "../Modals/LoadingModal";
@@ -12,7 +12,7 @@ function NewMovie(props){
     const [movieDetails, setMovieDetails] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [modalMessage, setModalMessage] = useState("")
-    const {user} = useAuth() 
+    const {user} = useContext(AuthContext) 
    const userToken = localStorage.getItem("token") 
     const navigate = useNavigate()
 

@@ -11,7 +11,7 @@ function MovieSearchResults(props) {
   return (
     <ul className="movie-search-list">
       {props.loadingSearch ? (
-        <li className="loading-search"> Loading... </li>
+        <li className="loading-search"> Searching... </li>
       ) : ( props.noResults ? <MovieSearchItem noResults={props.noResults}/> :
 
         props.array.slice(0, 10).map((movie) => {

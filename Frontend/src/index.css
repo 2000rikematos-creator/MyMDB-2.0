@@ -10,7 +10,7 @@ html, body, #root {
   --imdb-yellow: #f5c518;
   --imdb-black: #000000;
   --imdb-dark-gray: #121212;
-  --imdb-dark-gray-transparent:#12121280; 
+  --imdb-dark-gray-transparent:#000000b1; 
   --text-color: #ffffff;
   --padding-standard: 20px;
 }

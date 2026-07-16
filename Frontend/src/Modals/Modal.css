@@ -16,7 +16,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: transparent;
+  background-color: var(--imdb-dark-gray);
+  padding: 1em;
   color: white;
   height: fit-content;
   border-radius: 8px;

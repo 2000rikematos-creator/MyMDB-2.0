@@ -1,20 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css'
 import Movies from "./Pages/Movies"
 import NewMovie from "./Pages/NewMovie"
 import NavBar from './Navigation/NavBar';
 import MyMovies from './Pages/MyMovies';
-import { useAuth } from './authentication/authContext';
+import { AuthContext } from './authentication/authContext';
 import EditMovie from './Pages/EditMovie';
 
 function App() {
 
-const {isLoggedIn} = useAuth()
+const {isLoggedIn} = useContext(AuthContext)
 const [clickedAway, setClickedAway] = useState(false)
 
 function onClickAway(){
-  console.log("clicked")
  setClickedAway(true)
 }
 

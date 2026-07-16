@@ -26,8 +26,6 @@ return <AuthContext.Provider value={{user, isLoggedIn, login, logout}}>
 
 }
 
-function useAuth(){
-    return useContext(AuthContext)
-}
 
-export {useAuth, AuthProvider}
+
+export {AuthContext, AuthProvider}

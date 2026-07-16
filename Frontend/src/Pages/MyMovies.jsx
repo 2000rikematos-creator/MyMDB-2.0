@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useContext} from "react"
 import MovieList from "../Components/Movies/MovieList.jsx"
 import PageLayout from "../Components/Shared/PageLayout.jsx"
-import {useAuth} from "../authentication/authContext.jsx" 
+import {AuthContext} from "../authentication/authContext.jsx" 
 import Modal from "../Modals/Modal.jsx"
 import ConfirmationModal from "../Modals/ConfirmationModal.jsx"
 import LoadingModal from "../Modals/LoadingModal.jsx"
@@ -11,7 +11,7 @@ import SuccessModal from "../Modals/SuccessModal.jsx"
 function MyMovies(){
     const navigate = useNavigate()
     const [movies, setMovies] = useState([])
-    const {user} = useAuth()
+    const {user} = useContext(AuthContext)
     const [deleteSure, setDeleteSure] = useState(false)
     const [selectedMovie, setSelectedMovie] = useState("")
     const [isLoadingDelete, setIsLoadingDelete] = useState(false)

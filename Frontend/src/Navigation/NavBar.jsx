@@ -1,11 +1,11 @@
 import NavBarItems from "./NavBarItems";
 import Logo from "./Logo.jsx";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./NavBar.css";
 import SignupModal from "../Modals/SignupModal.jsx";
 import LoginModal from "../Modals/LoginModal.jsx";
 import SuccessModal from "../Modals/SuccessModal.jsx";
-import { useAuth } from "../authentication/authContext.jsx";
+import { AuthContext, AuthProvider} from "../authentication/authContext.jsx";
 import SearchMovies from "./SearchMovies.jsx";
 import NavBarItem from "./NavBarItem.jsx";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ function NavBar(props) {
   const [authTry, setAuthTry] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [failureMessage, setFailureMessage] = useState("");
-  const { isLoggedIn, login, logout, user } = useAuth();
+  const { isLoggedIn, login, logout, user } = useContext(AuthContext);
   const [sideDrawerIsVisible, setSideDrawerIsVisible] = useState(false)
   const [screenIsSmall, setScreenIsSmall] = useState(false)
   const [searchIsActive, setSearchIsActive] = useState(false)
@@ -82,7 +82,6 @@ function NavBar(props) {
 
     setFailureMessage(null);
     if (auth === "login") {
-      console.log(userData);
       setSuccessMessage(`Welcome back ${userData.username}`);
       setLoginIsShowing(false);
       setAuthTry(true);
@@ -91,7 +90,6 @@ function NavBar(props) {
       }, 1000);
     }
     if (auth === "signup") {
-      console.log(user);
       setSuccessMessage(`Welcome ${userData.username}`);
       setSignupIsShowing(false);
       setAuthTry(true);
@@ -104,7 +102,6 @@ function NavBar(props) {
   function onFailureHandler(auth, error) {
     logout();
     setSuccessMessage(false);
-    console.log(error);
     if (auth === "login") {
       setFailureMessage(error.message);
       setLoginIsShowing(false);

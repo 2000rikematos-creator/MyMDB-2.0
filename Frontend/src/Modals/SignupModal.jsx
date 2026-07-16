@@ -52,14 +52,13 @@ function SignupModal(props){
     } catch (error) {
       setloadingState(false);
       props.onFailure("signup", error.message);
-      console.log(error.message);
     }
     
   }
 
   if (!props.isOpen) return null;
 
- return <Modal onClose={props.onClose} title="Signup">
+ return <Modal onClose={props.onClose}>
   <div className="login-modal">
     <h1 className="login-modal-title">Sign up</h1> 
     {!loadingState ? <form className="signup-form" onSubmit={handleSubmit}>

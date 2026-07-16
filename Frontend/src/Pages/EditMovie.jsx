@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import PageLayout from "../Components/Shared/PageLayout";
 import NewMovieReview from "../Components/Movies/NewMovieReview";
-import { useAuth } from "../authentication/authContext";
+import { AuthContext } from "../authentication/authContext";
 import { useParams } from "react-router-dom";
 import LoadingModal from "../Modals/LoadingModal";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ function EditMovie() {
 const navigate = useNavigate() 
 const [movieDetails, setMovieDetails] = useState("")
 const [review, setReview] = useState("")
-const {user} = useAuth()
+const {user} = useContext(AuthContext)
 const {id} = useParams()
 const [isLoading, setIsLoading] = useState(false)
 const [modalMessage, setModalMessage] = useState("")

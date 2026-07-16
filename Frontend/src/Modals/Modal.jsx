@@ -7,7 +7,7 @@ const Modal = (props) => {
     <div className="modal-overlay">
       
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <h1>{props.title}</h1>
+       {props.title? <h1>{props.title}</h1>:null} 
         {props.children}
       </div>
     </div>,

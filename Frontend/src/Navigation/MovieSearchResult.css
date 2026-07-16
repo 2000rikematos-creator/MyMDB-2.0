@@ -20,6 +20,9 @@
 }
 
 .loading-search{
+  margin-top: 1em;
+  background-color: var(--imdb-dark-gray-transparent);
+    color: var(--imdb-yellow);
     width: 100%;
 }
 
