@@ -13,7 +13,8 @@ function checkAuth(req,res,next){
         req.userData = verifiedToken.data
        next()
     }catch(error){
-        console.log(error)
+        if(error instanceof jwt.TokenExpiredError)return next(new HttpError("Session expired",401))
+    
         return next(new HttpError("unauthorized",401))
     }
     

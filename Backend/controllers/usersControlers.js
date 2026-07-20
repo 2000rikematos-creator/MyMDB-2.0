@@ -123,4 +123,8 @@ async function userLogin(req, res, next) {
   }
 }
 
-export { userSignup, userLogin, verifySession, sessionDestroy };
+async function verifyToken(req,res,next){
+  console.log(req.sessionExpired)
+}
+
+export { userSignup, userLogin, verifySession, sessionDestroy,verifyToken};

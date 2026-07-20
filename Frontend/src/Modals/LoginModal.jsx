@@ -36,10 +36,8 @@ const LoginModal = (props) => {
     setLoadingState(false)
     props.onSuccess("login",userData)
   }catch(error){
-    console.log(error)
     setLoadingState(false)
     props.onFailure("login", error)
-    console.log(error.message)
   }
    
   }

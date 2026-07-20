@@ -1,6 +1,7 @@
 import express from "express"
 import * as usersControllers from "../controllers/usersControlers.js" 
 import { body } from "express-validator"
+import checkAuth from "../utils/authMiddleware.js"
 
 const usersRoutes = express.Router()
 
@@ -12,5 +13,9 @@ usersRoutes.post("/login",[body("email").notEmpty().withMessage("please input em
      body("password").notEmpty().withMessage("please input password")], usersControllers.userLogin)
 usersRoutes.get("/me", usersControllers.verifySession)
 usersRoutes.post("/logout", usersControllers.sessionDestroy)
+
+usersRoutes.use(checkAuth)
+
+usersRoutes.post("/verify-token",usersControllers.verifyToken)
 
 export default usersRoutes

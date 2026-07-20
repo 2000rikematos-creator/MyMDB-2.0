@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import SideDrawer from "./SideDrawer.jsx";
 import MenuIcon from "../Components/Icons/MenuSVG.jsx";
 import PageTitle from "./PageTitle.jsx";
+import Modal from "../Modals/Modal.jsx";
 
 
 function NavBar(props) {
@@ -26,9 +27,35 @@ function NavBar(props) {
   const [sideDrawerIsVisible, setSideDrawerIsVisible] = useState(false)
   const [screenIsSmall, setScreenIsSmall] = useState(false)
   const [searchIsActive, setSearchIsActive] = useState(false)
-
-    const navigate = useNavigate()
+  const [errorMessage,setErrorMessage] = useState("") 
+   const navigate = useNavigate()
     const location = useLocation()
+
+  useEffect(()=>{
+    const verifySession = setInterval(()=>{
+      async function verifyToken(){
+        const token = localStorage.getItem("token")
+        if(token){
+          const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/users/verify-token`,{method:"POST",headers:{"Content-Type":"application/json","Authorization":`Bearer ${token}`},body:JSON.stringify({token:token})}) 
+        const responseData = await response.json()
+          if(responseData.message === 'Session expired'){
+            setErrorMessage(responseData.message)
+          setTimeout(()=>setErrorMessage(""),2000)
+          logout()
+        }
+        }
+        
+          
+      }
+    verifyToken()
+     
+    },2000)
+
+  return ()=>clearInterval(verifySession)
+
+  },[])
+
+   
 
     useEffect(()=>{
       setSideDrawerIsVisible(false)
@@ -144,6 +171,7 @@ function onSearchIsActive(status){
 
   return (
     <nav className="nav-bar">
+      {errorMessage ? <Modal title={errorMessage}/>:null}
       <Logo />
       <PageTitle where={locationHandler(location.pathname)} />
      
